@@ -168,3 +168,11 @@ button:active {
   max-width: 100%;
   border-radius: 6px;
   border: 1px solid #e5e7eb;
+#upiQr {
+  display: block;
+  margin: 8px auto;
+  width: min(85vw, 340px);
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: -webkit-optimize-contrast;
+}
