@@ -177,11 +177,10 @@ button:active {
 }
 
 #upiQr {
-  width: 100%;
-  max-width: 260px;  /* perfect size for mobile */
-  height: auto;
+  width: 230px;     /* fixed size between 200–250 */
+  height: 230px;    /* keep square */
   display: block;
-  margin: 10px auto;
-  border-radius: 8px;
+  margin: 15px auto;
 }
+
 
