@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrations</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Player Registrations</h1>
+    <p><a class="btn-link" href="/">← Back to Form</a></p>
+    <div id="list" class="list"></div>
+  </div>
+  <script src="config.js"></script>
+  <script>
+    const BASE = (window.API_BASE_URL || '').replace(/\/+$/, '');
+    let TOKEN = null;
+    function ensureAuth() {
+      if (!TOKEN) {
+        const u = prompt('Admin username:');
+        const p = prompt('Admin password:');
+        if (!u || !p) return false;
+        TOKEN = btoa(`${u}:${p}`);
+      }
+      return true;
+    }
+    async function load() {
+      const list = document.getElementById('list');
+      list.innerHTML = 'Loading...';
+      try {
+        if (!ensureAuth()) { list.textContent = 'Auth required.'; return; }
+        const res = await fetch(`${BASE}/api/players`, { headers: { 'Authorization': `Basic ${TOKEN}` } });
+        const data = await res.json();
+        if (!res.ok || !data.ok) {
+          list.textContent = data?.error || 'Failed to load players';
+          return;
+        }
+        const players = data.players;
+        if (!players.length) {
+          list.textContent = 'No registrations yet.';
+          return;
+        }
+        list.innerHTML = '';
+        players.forEach(p => {
+          const card = document.createElement('div');
+          const roleClass =
+            p.role === 'batsman' ? 'role-batsman' :
+            p.role === 'bowler' ? 'role-bowler' : 'role-all-rounder';
+          const payClass = p.payment_option === 'upi' ? 'pay-upi' : 'pay-cash';
+          card.className = 'card buttonish';
+          card.innerHTML = `
+            <div>
+              <div><strong>${p.name}</strong> <small>Age ${p.age}</small></div>
+              <div class="badges" style="margin:6px 0 10px;">
+                <span class="badge ${roleClass}">${p.role.toUpperCase()}</span>
+                <span class="badge ${payClass}">${p.payment_option.toUpperCase()}</span>
+                ${p.collected ? '<span class="badge" style="background:#16a34a;">COLLECTED</span>' : ''}
+              </div>
+              <div>Contact: ${p.contact_number}</div>
+              <div>Track: ${p.track_size} | Jersey: ${p.jersey_size} #${p.jersey_number}</div>
+              ${p.upi_image_path ? `<div style="margin-top:8px;"><img class="thumb" src="${p.upi_image_path}" alt="UPI Image"></div>` : ''}
+              <div style="margin-top:6px;"><small>Submitted: ${new Date(p.created_at).toLocaleString()}</small></div>
+            </div>
+            <div>
+              <button type="button" class="btn-secondary" onclick="markCollected(${p.id}, ${p.collected ? 'false' : 'true'})">${p.collected ? 'Uncollect' : 'Collected'}</button>
+              <button type="button" class="btn-danger" onclick="deletePlayer(${p.id})">Delete</button>
+            </div>
+          `;
+          list.appendChild(card);
+        });
+      } catch (e) {
+        list.textContent = 'Network error.';
+      }
+    }
+    load();
+    async function markCollected(id, val) {
+      if (!ensureAuth()) return;
+      try {
+        const res = await fetch(`${BASE}/api/players/${id}/collected`, {
+          method: 'PATCH',
+          headers: { 'Authorization': `Basic ${TOKEN}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ collected: !!val })
+        });
+        if (!res.ok) { alert('Failed to update.'); return; }
+        load();
+      } catch { alert('Network error.'); }
+    }
+    async function deletePlayer(id) {
+      if (!ensureAuth()) return;
+      if (!confirm('Delete this player?')) return;
+      try {
+        const res = await fetch(`${BASE}/api/players/${id}`, { method: 'DELETE', headers: { 'Authorization': `Basic ${TOKEN}` } });
+        if (!res.ok) { alert('Failed to delete.'); return; }
+        load();
+      } catch { alert('Network error.'); }
+    }
+  </script>
+</body>
+</html>

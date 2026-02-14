@@ -1,0 +1,19 @@
+{
+  "name": "cricket-player-registration",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple Cricket Player Registration form with SQL (SQLite), HTML/CSS/JS frontend, Node.js backend.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

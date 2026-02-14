@@ -1,0 +1,170 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --bg1: #0ea5e9;
+  --bg2: #6366f1;
+  --accent: #2563eb;
+  --accent-2: #10b981;
+  --danger: #ef4444;
+  --text: #1f2937;
+  background: linear-gradient(135deg, rgba(14,165,233,.12), rgba(99,102,241,.12));
+  color: #1f2937;
+}
+.container {
+  max-width: 720px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  border: 1px solid rgba(99,102,241,.15);
+}
+h1 {
+  margin-top: 0;
+  font-size: 24px;
+  background: linear-gradient(90deg, var(--bg1), var(--bg2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+form .field {
+  margin-bottom: 16px;
+}
+form .two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+select,
+input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  outline: none;
+}
+input:focus,
+select:focus {
+  border-color: var(--bg2);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+.inline {
+  display: flex;
+  gap: 16px;
+}
+button {
+  display: inline-block;
+  padding: 12px 16px;
+  background: linear-gradient(90deg, var(--bg1), var(--bg2));
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .05s ease, filter .15s ease;
+}
+button:hover {
+  filter: brightness(0.95);
+}
+button:active {
+  transform: translateY(1px);
+}
+.status {
+  min-height: 20px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+.status.ok { color: #065f46; }
+.status.err { color: #991b1b; }
+.hidden { display: none; }
+.admin-link {
+  margin-top: 20px;
+  text-align: right;
+}
+.admin-panel {
+  margin-top: 14px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(99,102,241,.35);
+}
+.admin-login {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.btn-link {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--accent), var(--bg2));
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn-secondary {
+  background: linear-gradient(90deg, #16a34a, #10b981);
+}
+.btn-danger {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+.list {
+  display: grid;
+  gap: 14px;
+}
+.card {
+  padding: 14px;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 10px;
+  background: #fff;
+}
+.card.buttonish {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform .05s ease, box-shadow .15s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06);
+}
+.card.buttonish:hover {
+  box-shadow: 0 6px 16px rgba(99,102,241,.12);
+}
+.card.buttonish:active {
+  transform: translateY(1px);
+}
+.badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+.badge.role-batsman { background: #f59e0b; }
+.badge.role-bowler { background: #0ea5e9; }
+.badge.role-all-rounder { background: #8b5cf6; }
+.badge.pay-upi { background: #10b981; }
+.badge.pay-cash { background: #ef4444; }
+}
+.thumb {
+  max-height: 120px;
+  max-width: 100%;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;

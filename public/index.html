@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cricket Player Registration</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Cricket Player Registration</h1>
+    <form id="registrationForm" enctype="multipart/form-data">
+      <div class="field">
+        <label for="name">Player Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter full name" required>
+      </div>
+
+      <div class="field two">
+        <div>
+          <label for="age">Age</label>
+          <input type="number" id="age" name="age" min="1" max="100" placeholder="18" required>
+        </div>
+        <div>
+          <label for="role">Role</label>
+          <select id="role" name="role" required>
+            <option value="">Select role</option>
+            <option value="Batsman">Batsman</option>
+            <option value="Bowler">Bowler</option>
+            <option value="All-Rounder">All-Rounder</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="contactNumber">Contact Number</label>
+        <input type="tel" id="contactNumber" name="contactNumber" inputmode="numeric" pattern="\d*" placeholder="10-digit number" required>
+      </div>
+
+      <div class="field two">
+        <div>
+          <label for="trackSize">Track Size</label>
+          <select id="trackSize" name="trackSize" required>
+            <option value="">Select</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+            <option>XXL</option>
+          </select>
+        </div>
+        <div>
+          <label for="jerseySize">Jersey Size</label>
+          <select id="jerseySize" name="jerseySize" required>
+            <option value="">Select</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+            <option>XXL</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="jerseyNumber">Jersey Number</label>
+        <input type="number" id="jerseyNumber" name="jerseyNumber" min="0" max="999" placeholder="e.g., 7" required>
+      </div>
+
+      <div class="field">
+        <label>Payment Option</label>
+        <div class="inline">
+          <label><input type="radio" name="paymentOption" value="Cash" required> Cash</label>
+          <label><input type="radio" name="paymentOption" value="UPI" required> UPI</label>
+        </div>
+      </div>
+
+      <div id="upiInfoField" class="field hidden">
+        <label>Scan UPI QR to Pay</label>
+        <div>
+          <img id="upiQr" class="thumb" src="upi-qr.png" alt="UPI QR Code (place file at public/upi-qr.png)">
+        </div>
+        <small>If the image does not appear, add your QR image at: public/upi-qr.png</small>
+      </div>
+
+      <button type="submit">Submit Registration</button>
+      <p id="status" class="status"></p>
+    </form>
+
+    <p class="admin-link"><button id="adminToggle" class="btn-link" type="button">ADMIN</button></p>
+    <div id="adminPanel" class="admin-panel hidden">
+      <div class="admin-login">
+        <input id="adminUser" type="text" placeholder="Username">
+        <input id="adminPass" type="password" placeholder="Password">
+        <button id="adminLoad" type="button">View Registrations</button>
+      </div>
+      <p id="adminStatus" class="status"></p>
+      <div id="adminList" class="list"></div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+  </body>
+</html>
