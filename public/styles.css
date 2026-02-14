@@ -170,9 +170,10 @@ button:active {
   border: 1px solid #e5e7eb;
 #upiQr {
   display: block;
-  margin: 8px auto;
-  width: min(60vw, 250px);
+  margin: 16px auto;
+  width: 100%;
+  max-width: 280px;   /* prevents it from becoming too large */
   height: auto;
-  image-rendering: pixelated;
-  image-rendering: -webkit-optimize-contrast;
+  object-fit: contain;
 }
+
