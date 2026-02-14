@@ -74,13 +74,16 @@
         </div>
       </div>
 
-      <div id="upiInfoField" class="field hidden">
-        <label>Scan UPI QR to Pay</label>
-        <div>
-          <img id="upiQr" class="thumb" src="upi-qr.png" alt="UPI QR Code (place file at public/upi-qr.png)">
-        </div height="100px">
-        <small>upi-qr.png</small>
-      </div>
+<div id="upiInfoField" class="field hidden">
+  <label>Scan UPI QR to Pay</label>
+
+  <div class="qr-wrapper">
+    <img id="upiQr" src="upi-qr.png" alt="UPI QR Code">
+  </div>
+
+  <small>upi-qr.png</small>
+</div>
+
 
       <button type="submit">Submit Registration</button>
       <p id="status" class="status"></p>
